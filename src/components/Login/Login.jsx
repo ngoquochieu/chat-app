@@ -1,20 +1,56 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import {signInWithEmailAndPassword  } from 'firebase/auth'
+import {auth} from '../Firebase/config'
+import LoginGG from './LoginGG'
+import LoginFB from './LoginFB'
 function Login() {
+    const navigate = useNavigate()
+    const [inputs, setInputs] = useState({
+        email:"",
+        password:""
+    })
+    const handleInputs = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setInputs(state => ({...state, [name]: value}))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        signInWithEmailAndPassword(auth, inputs.email, inputs.password)
+            .then(userCredential => {
+                console.log(userCredential.user)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    auth.onAuthStateChanged(user => {
+        if(user) {
+            navigate('/home')
+        }
+    })
     return <section id="login">
         <div className="login container-fluid row">
             <div className="col-4 content-left h-100">
                 <div className="login-form">
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
                         <div className="row">LOGIN</div>
                         <div className="row txt_field">
-                            <label>Username</label>
-                            <input type="text" name="username" />
+                            <label>Email</label>
+                            <input type="email" name="email" onChange={handleInputs}/>
                         </div>
                         <div className="row txt_field">
                             <label>Password</label>
-                            <input type="password" name="password" />
+                            <input type="password" name="password" onChange={handleInputs}/>
                         </div>
                         <div className="row">
                             <button className="btn-login">Login</button>
+                        </div>
+                        <div className="row auth d-flex justify-content-around align-items-center">
+                            <LoginGG></LoginGG>                          
+                            <LoginFB></LoginFB>
                         </div>
                     </form>
                 </div>

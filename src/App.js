@@ -1,10 +1,10 @@
 import './App.css';
-
+import AuthProvider from './components/Context/AuthProvider';
 function App(props) {
   return <>
-    <section>
+    <AuthProvider>
       {props.children}
-    </section>
+    </AuthProvider>
 </>
 }
 
