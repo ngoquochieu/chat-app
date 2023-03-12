@@ -1,15 +1,11 @@
-import {auth} from '../Firebase/config'
-import { signOut } from 'firebase/auth'
+import Sidebar from './Sidebar'
+import ChatRoom from './Chatroom'
 function Home() {
-    const logOut = (e) => {
-        signOut(auth)
-            .then(() => {
-                console.log("success")
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-    return <button onClick={logOut}>LOGOUT</button>
+    return (
+            <div className="row">
+                <div className="col-4 px-md-0"><Sidebar/></div>
+                <div className="col-8 px-md-0"><ChatRoom/></div>
+            </div>
+    )
 }
 export default Home

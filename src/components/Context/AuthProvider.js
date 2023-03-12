@@ -5,6 +5,7 @@ import {auth} from '../Firebase/config'
 export const AuthContext = createContext()
 function AuthProvider({children}) {
     const navigate = useNavigate()
+
     const [user, setUser] = useState({})
     useEffect(() => {
         const unsubscibed = auth.onAuthStateChanged(user => {
@@ -18,7 +19,7 @@ function AuthProvider({children}) {
         return() => {
             unsubscibed()
         }
-    }, [navigate])
+    }, [])
     return <AuthContext.Provider value={{user}}>
         {children}
     </AuthContext.Provider>
