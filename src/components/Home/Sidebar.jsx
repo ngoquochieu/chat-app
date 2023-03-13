@@ -10,8 +10,8 @@ const SidebarStyled = styled.div`
 function Sidebar() {
     return (
         <SidebarStyled>
-            <div className="row sidebar">
-                <div className="col-12">
+            <div className="row sidebar px-md-0">
+                <div className="col-12  ">
                         <UserInfo/>
                     </div>
                 <div className="col-12">

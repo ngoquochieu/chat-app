@@ -1,5 +1,7 @@
-import {Collapse, Typography} from 'antd'
+import {Collapse, Typography, Button} from 'antd'
 import styled from 'styled-components'
+import {PlusSquareOutlined} from '@ant-design/icons'
+
 const { Panel } = Collapse;
 
 const PanelStyled = styled(Panel)`
@@ -25,6 +27,7 @@ function RoomList() {
                 <LinkStyled>Room 2</LinkStyled>
                 <LinkStyled>Room 3</LinkStyled>
                 <LinkStyled>Room 4</LinkStyled>
+                <Button type='text' icon={<PlusSquareOutlined/>}>Them moi </Button>
             </PanelStyled>
         </Collapse>
     )
